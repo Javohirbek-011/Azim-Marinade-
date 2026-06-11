@@ -1,0 +1,12 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# React SPA: barcha yo'nalishlarni index.html ga yo'naltirish (404 oldini olish)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
