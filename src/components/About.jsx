@@ -9,10 +9,7 @@ export default function About() {
         <div className="about__text">
           <span className="section-label">BIZ HAQIMIZDA</span>
           <h2>AZIM Marinade Go&apos;sht Markazi</h2>
-          <p>
-            Biz Rishton tumani, Bo&apos;jay qishlog&apos;ida joylashgan marinadlangan go&apos;sht
-            markazimizda har kuni eng sifatli va yangi mahsulotlarni tayyorlaymiz.
-          </p>
+          
           <p>
             Maxsus retseptlar asosida tayyorlangan marinadlarimiz go&apos;shtga noyob ta&apos;m
             beradi. Oilaviy dasturxonlar, to&apos;ylar va restoranlar uchun ishonchli hamkoringiz.

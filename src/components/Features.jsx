@@ -16,7 +16,7 @@ const features = [
   {
     icon: MdLocalShipping,
     title: 'Tez Yetkazib Berish',
-    text: "Farg'ona viloyati bo'ylab tez va ishonchli yetkazib berish",
+    text: "Rishton tumani bo'ylab tez va ishonchli yetkazib berish",
   },
   {
     icon: MdVerified,
