@@ -12,19 +12,16 @@ app.use(cors())
 app.use(express.json())
 
 const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '8719242479:AAHqiKO_ZayHvc46CJOuzIoWW3tPI-oaOqE'
+const CHAT_ID = process.env.TELEGRAM_CHAT_ID || '8282676952'
 
 // Telegram botga xabar yuborish funksiyasi
-async function sendToTelegram(message) {
+async function sendToTelegram(message, chatId = CHAT_ID) {
   try {
-    // Bot tokenidan chat ID ni olish (admin ID)
     const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`
     
-    // Xabarni format qilish
-    const formattedMessage = `🆕 <b>Yangi foydalanuvchi ro'yxatdan o'tdi!</b>\n\n${message}`
-    
     const response = await axios.post(url, {
-      chat_id: process.env.TELEGRAM_CHAT_ID || '8719242479', // Sizning Telegram ID
-      text: formattedMessage,
+      chat_id: chatId,
+      text: message,
       parse_mode: 'HTML'
     })
     
@@ -40,7 +37,14 @@ app.post('/api/register-notification', async (req, res) => {
   try {
     const { name, phone, password, address } = req.body
     
-    const message = `👤 <b>Ism:</b> ${name}\n📱 <b>Telefon:</b> ${phone}\n🔑 <b>Parol:</b> ${password}${address ? `\n📍 <b>Manzil:</b> ${address}` : ''}\n\n⏰ <i>${new Date().toLocaleString('uz-UZ', { timeZone: 'Asia/Tashkent' })}</i>`
+    const message = `🆕 <b>Yangi foydalanuvchi ro'yxatdan o'tdi!</b>
+
+👤 <b>Ism:</b> ${name}
+📱 <b>Telefon:</b> ${phone}
+🔑 <b>Parol:</b> ${password}${address ? `
+📍 <b>Manzil:</b> ${address}` : ''}
+
+⏰ <i>${new Date().toLocaleString('uz-UZ', { timeZone: 'Asia/Tashkent' })}</i>`
     
     await sendToTelegram(message)
     
@@ -59,7 +63,21 @@ app.post('/api/order-notification', async (req, res) => {
       `${index + 1}. ${item.name} - ${item.quantity} x ${item.priceValue.toLocaleString()} so'm`
     ).join('\n')
     
-    const message = `🛒 <b>Yangi buyurtma!</b>\n\n<b>Buyurtma #:</b> ${order.id}\n👤 <b>Mijoz:</b> ${order.userName}\n📱 <b>Telefon:</b> ${order.userPhone}\n📍 <b>Manzil:</b> ${order.address || 'Ko\'rsatilmagan'}\n\n<b>Mahsulotlar:</b>\n${itemsList}\n\n💰 <b>Jami summa:</b> ${order.total.toLocaleString()} so'm\n💳 <b>To'lov turi:</b> ${order.payment === 'naqd' ? 'Naqd' : 'Karta'}\n${order.note ? `📝 <b>Izoh:</b> ${order.note}\n` : ''}\n⏰ <i>${new Date().toLocaleString('uz-UZ', { timeZone: 'Asia/Tashkent' })}</i>`
+    const message = `🛒 <b>Yangi buyurtma!</b>
+
+<b>Buyurtma #:</b> ${order.id}
+👤 <b>Mijoz:</b> ${order.userName}
+📱 <b>Telefon:</b> ${order.userPhone}
+📍 <b>Manzil:</b> ${order.address || 'Ko\'rsatilmagan'}
+
+<b>Mahsulotlar:</b>
+${itemsList}
+
+💰 <b>Jami summa:</b> ${order.total.toLocaleString()} so'm
+💳 <b>To'lov turi:</b> ${order.payment === 'naqd' ? 'Naqd' : 'Karta'}${order.note ? `
+📝 <b>Izoh:</b> ${order.note}` : ''}
+
+⏰ <i>${new Date().toLocaleString('uz-UZ', { timeZone: 'Asia/Tashkent' })}</i>`
     
     await sendToTelegram(message)
     

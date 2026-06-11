@@ -29,6 +29,7 @@ npm install
 ```env
 TELEGRAM_BOT_TOKEN=your_bot_token_here
 TELEGRAM_CHAT_ID=your_telegram_chat_id
+VITE_API_URL=http://localhost:3001
 PORT=3001
 ```
 
@@ -39,21 +40,40 @@ PORT=3001
 3. O'z Telegram ID ingizni olish uchun [@userinfobot](https://t.me/userinfobot) ga `/start` yuboring
 4. ID ni `.env` fayliga `TELEGRAM_CHAT_ID` sifatida kiriting
 
+Yoki avtomatik:
+```bash
+npm run get-chat-id
+```
+
 ## Ishga tushirish
 
 ### Development rejimida
 
-**Terminal 1** - Frontendni ishga tushirish:
-```bash
-npm run dev
-```
-
-**Terminal 2** - Backend serverni ishga tushirish:
+**Terminal 1** - Backend serverni ishga tushirish:
 ```bash
 npm run server
 ```
 
-### Production
+**Terminal 2** - Frontendni ishga tushirish:
+```bash
+npm run dev
+```
+
+Frontend: `http://localhost:5173`
+Backend API: `http://localhost:3001`
+
+### Production (Netlify)
+
+Netlify ga deploy qilish uchun batafsil yo'riqnoma: [DEPLOYMENT.md](./DEPLOYMENT.md)
+
+**Qisqacha:**
+1. GitHub repository yarating va push qiling
+2. Netlify hisobingizga kiring
+3. "Import from Git" orqali repository'ni import qiling
+4. Environment variables qo'shing:
+   - `TELEGRAM_BOT_TOKEN`
+   - `TELEGRAM_CHAT_ID`
+5. Deploy qiling
 
 Build qilish:
 ```bash
