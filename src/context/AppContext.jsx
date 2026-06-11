@@ -10,7 +10,6 @@ import {
   saveSession,
   saveUsers,
 } from '../utils/storage'
-import { sendRegistrationToTelegram, sendOrderToTelegram } from '../utils/telegram'
 
 const AppContext = createContext(null)
 
@@ -67,14 +66,6 @@ export function AppProvider({ children }) {
 
     users.push(newUser)
     saveUsers(users)
-
-    // Telegram botga yuborish
-    sendRegistrationToTelegram({
-      name: newUser.name,
-      phone: newUser.phone,
-      password: data.password,
-      address: newUser.address,
-    }).catch(err => console.error('Telegram yuborishda xato:', err))
 
     const session = { id: newUser.id, name: newUser.name, phone: newUser.phone, address: newUser.address }
     saveSession(session)
@@ -189,9 +180,6 @@ export function AppProvider({ children }) {
     const orders = getOrders()
     orders.unshift(order)
     saveOrders(orders)
-    
-    // Buyurtmani Telegram botga yuborish
-    sendOrderToTelegram(order).catch(err => console.error('Buyurtmani Telegramga yuborishda xato:', err))
     
     clearCart()
 

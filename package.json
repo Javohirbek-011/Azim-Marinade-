@@ -7,18 +7,9 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "server": "node server.js",
-    "start": "node server.js",
-    "get-chat-id": "node get-chat-id.js",
-    "test-telegram": "node test-telegram.js",
-    "dev:full": "echo 'Ikkita terminal oching: 1) npm run server 2) npm run dev'"
+    "preview": "vite preview"
   },
   "dependencies": {
-    "axios": "^1.17.0",
-    "cors": "^2.8.6",
-    "dotenv": "^17.4.2",
-    "express": "^5.2.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-icons": "^5.6.0"
