@@ -1,24 +1,18 @@
 import { FiMapPin, FiPhone, FiClock } from 'react-icons/fi'
-import { FaTelegramPlane } from 'react-icons/fa'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 
 const infoCards = [
   {
     icon: FiMapPin,
     title: 'Manzil',
-    text: "O'zbekiston, Farg'ona viloyati, Rishton tumani, Bo'jay qishlog'i",
+    text: "Azimjon g'osht do'koni, Rishtan, Fergana Region, Uzbekistan",
+    href: 'https://maps.app.goo.gl/azimjon-location',
   },
   {
     icon: FiPhone,
     title: 'Telefon',
     text: '+998 50 728 69 65',
     href: 'tel:+998507286965',
-  },
-  {
-    icon: FaTelegramPlane,
-    title: 'Telegram',
-    text: '@DufaOps_Agent',
-    href: 'https://t.me/DufaOps_Agent',
   },
   {
     icon: FiClock,
@@ -56,8 +50,8 @@ export default function Contact() {
         </div>
         <div className="contact__map">
           <iframe
-            title="Rishton tumani xaritasi"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12180.5!2d71.2847!3d40.3561!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38bb4b8b8b8b8b8b%3A0x0!2sRishton%20District%2C%20Fergana%20Region!5e0!3m2!1sen!2suz!4v1700000000000!5m2!1sen!2suz"
+            title="Azimjon go'sht do'koni"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3003.8!2d69.95!3d40.364!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38bb57e7f7f7f7f7%3A0x0!2sC67W%2BG6R%20Rishtan!5e0!3m2!1sen!2suz!4v1700000000000!5m2!1sen!2suz"
             width="100%"
             height="100%"
             style={{ border: 0 }}

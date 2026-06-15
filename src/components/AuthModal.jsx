@@ -1,5 +1,5 @@
 import { IoClose } from 'react-icons/io5'
-import { FiUser, FiPhone, FiLock, FiMapPin } from 'react-icons/fi'
+import { FiUser, FiPhone, FiLock, FiMapPin, FiMail } from 'react-icons/fi'
 import { useApp } from '../context/AppContext'
 
 export default function AuthModal() {
@@ -24,6 +24,7 @@ export default function AuthModal() {
     }
     register({
       name: fd.get('name'),
+      email: fd.get('email'),
       phone: fd.get('phone'),
       password: fd.get('password'),
       address: fd.get('address'),
@@ -86,6 +87,11 @@ export default function AuthModal() {
             <label className="form-field">
               <FiUser aria-hidden="true" />
               <input type="text" name="name" placeholder="Ism familiya" required />
+            </label>
+
+            <label className="form-field">
+              <FiMail aria-hidden="true" />
+              <input type="email" name="email" placeholder="Email (ixtiyoriy)" />
             </label>
 
             <label className="form-field">

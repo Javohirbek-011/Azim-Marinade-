@@ -195,13 +195,15 @@ h1, h2, h3, h4 {
 
 .logo__image {
   width: auto;
-  height: 60px;
+  height: 100px;
   object-fit: contain;
   transition: all var(--transition);
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
 }
 
 .logo--sm .logo__image {
-  height: 45px;
+  height: 70px;
 }
 
 .logo:hover .logo__image {
@@ -236,7 +238,7 @@ h1, h2, h3, h4 {
 .topbar {
   background: var(--color-secondary);
   color: var(--color-white);
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   position: relative;
   z-index: 1001;
 }
@@ -246,13 +248,14 @@ h1, h2, h3, h4 {
   align-items: center;
   justify-content: space-between;
   min-height: var(--topbar-height);
-  gap: 16px;
+  gap: 20px;
+  padding: 8px 0;
 }
 
 .topbar__left {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 24px;
   flex: 1;
   min-width: 0;
 }
@@ -260,7 +263,7 @@ h1, h2, h3, h4 {
 .topbar__item {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   color: rgba(255, 255, 255, 0.9);
   white-space: nowrap;
 }
@@ -272,6 +275,7 @@ h1, h2, h3, h4 {
 .topbar__item svg {
   flex-shrink: 0;
   color: var(--color-primary);
+  font-size: 1.1rem;
 }
 
 .topbar__item--location span {
@@ -282,23 +286,24 @@ h1, h2, h3, h4 {
 .topbar__right {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 20px;
   flex-shrink: 0;
 }
 
 .topbar__socials {
   display: flex;
-  gap: 12px;
+  gap: 14px;
 }
 
 .topbar__social {
   color: rgba(255, 255, 255, 0.8);
-  font-size: 1rem;
-  transition: color var(--transition);
+  font-size: 1.1rem;
+  transition: color var(--transition), transform var(--transition);
 }
 
 .topbar__social:hover {
   color: var(--color-primary);
+  transform: translateY(-2px);
 }
 
 /* ===== Navbar ===== */

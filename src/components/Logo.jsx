@@ -8,7 +8,7 @@ export default function Logo({ size = 'md', variant = 'full', onClick }) {
         aria-label="AZIM MAHSULOTLARI bosh sahifa"
       >
         <img 
-          src="/images/azim-logo.svg" 
+          src="/azim-logo.jpg" 
           alt="AZIM" 
           className="logo__image"
         />
@@ -19,7 +19,7 @@ export default function Logo({ size = 'md', variant = 'full', onClick }) {
   return (
     <a href="#bosh-sahifa" className={`logo logo--${size}`} onClick={onClick} aria-label="AZIM MAHSULOTLARI bosh sahifa">
       <img 
-        src="/images/azim-logo.svg" 
+        src="/azim-logo.jpg" 
         alt="AZIM MAHSULOTLARI" 
         className="logo__image"
       />

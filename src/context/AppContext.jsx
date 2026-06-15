@@ -58,6 +58,7 @@ export function AppProvider({ children }) {
     const newUser = {
       id: Date.now(),
       name: data.name.trim(),
+      email: data.email?.trim() || '',
       phone: data.phone.trim(),
       password: data.password,
       address: data.address?.trim() || '',
