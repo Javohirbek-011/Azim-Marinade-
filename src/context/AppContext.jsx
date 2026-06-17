@@ -73,6 +73,20 @@ export function AppProvider({ children }) {
     setUser(session)
     closeAuth()
     addNotification(`Xush kelibsiz, ${newUser.name}! Ro'yxatdan muvaffaqiyatli o'tdingiz.`, 'success')
+
+    // Telegramga xabar yuborish
+    fetch('/.netlify/functions/telegram-notify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        type: 'register',
+        name: newUser.name,
+        email: newUser.email,
+        phone: newUser.phone,
+        address: newUser.address
+      })
+    }).catch((err) => console.error('Telegram notify error:', err))
+
     return true
   }, [addNotification, closeAuth])
 
@@ -188,6 +202,24 @@ export function AppProvider({ children }) {
       `Buyurtmangiz qabul qilindi! Buyurtma raqami: ${order.id}. Jami: ${formatPrice(order.total)}`,
       'success'
     )
+
+    // Telegramga buyurtma xabarini yuborish
+    fetch('/.netlify/functions/telegram-notify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        type: 'order',
+        orderId: order.id,
+        userName: order.userName,
+        userPhone: order.userPhone,
+        items: order.items,
+        total: order.total,
+        address: order.address,
+        note: order.note,
+        payment: order.payment
+      })
+    }).catch((err) => console.error('Telegram notify error:', err))
+
     return order
   }, [user, cart, cartTotal, addNotification, openAuth, clearCart])
 
