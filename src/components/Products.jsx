@@ -39,7 +39,7 @@ export default function Products() {
   const [showAll, setShowAll] = useState(false)
 
   // Faqat 8ta mahsulot ko'rsatish yoki hammasini
-  const displayedProducts = showAll ? products : products.slice(0, 8)
+  const displayedProducts = showAll ? products : products.slice(0, 10)
   const hasMore = products.length > 8
 
   return (

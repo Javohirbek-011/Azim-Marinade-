@@ -1,6 +1,22 @@
 exports.handler = async (event) => {
+  // CORS headers qo'shamiz
+  const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS'
+  };
+
+  // OPTIONS request uchun
+  if (event.httpMethod === 'OPTIONS') {
+    return { statusCode: 200, headers, body: '' };
+  }
+
   if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, body: 'Method Not Allowed' };
+    return { 
+      statusCode: 405, 
+      headers,
+      body: JSON.stringify({ error: 'Method Not Allowed' })
+    };
   }
 
   try {
@@ -10,10 +26,22 @@ exports.handler = async (event) => {
     const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
     const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 
+    console.log('🔍 Environment check:', {
+      hasBotToken: !!BOT_TOKEN,
+      hasChatId: !!CHAT_ID,
+      type: type
+    });
+
     if (!BOT_TOKEN || !CHAT_ID) {
+      console.error('❌ Telegram sozlamalari topilmadi');
       return {
         statusCode: 500,
-        body: JSON.stringify({ error: 'Telegram sozlamalari (env variables) topilmadi' })
+        headers,
+        body: JSON.stringify({ 
+          error: 'Telegram sozlamalari (env variables) topilmadi',
+          hasBotToken: !!BOT_TOKEN,
+          hasChatId: !!CHAT_ID
+        })
       };
     }
 
@@ -47,6 +75,8 @@ exports.handler = async (event) => {
       message = `ℹ️ Yangi hodisa:\n${JSON.stringify(fields, null, 2)}`;
     }
 
+    console.log('📤 Telegram xabar yuborilmoqda...', { chatId: CHAT_ID });
+
     const tgResponse = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -57,16 +87,33 @@ exports.handler = async (event) => {
       })
     });
 
+    const tgData = await tgResponse.json();
+
     if (!tgResponse.ok) {
-      const errText = await tgResponse.text();
+      console.error('❌ Telegram API xatosi:', tgData);
       return {
         statusCode: 502,
-        body: JSON.stringify({ error: 'Telegramga yuborilmadi', detail: errText })
+        headers,
+        body: JSON.stringify({ 
+          error: 'Telegramga yuborilmadi', 
+          detail: tgData 
+        })
       };
     }
 
-    return { statusCode: 200, body: JSON.stringify({ success: true }) };
+    console.log('✅ Telegram xabar muvaffaqiyatli yuborildi');
+
+    return { 
+      statusCode: 200, 
+      headers,
+      body: JSON.stringify({ success: true, telegram: tgData })
+    };
   } catch (err) {
-    return { statusCode: 500, body: JSON.stringify({ error: err.message }) };
+    console.error('❌ Server xatosi:', err);
+    return { 
+      statusCode: 500, 
+      headers,
+      body: JSON.stringify({ error: err.message, stack: err.stack })
+    };
   }
 };

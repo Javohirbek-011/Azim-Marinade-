@@ -85,7 +85,15 @@ export function AppProvider({ children }) {
         phone: newUser.phone,
         address: newUser.address
       })
-    }).catch((err) => console.error('Telegram notify error:', err))
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log('✅ Telegram xabar yuborildi (register):', data)
+      })
+      .catch((err) => {
+        console.error('❌ Telegram xabar yuborishda xatolik:', err)
+        addNotification('Telegram xabar yuborishda xatolik', 'error')
+      })
 
     return true
   }, [addNotification, closeAuth])
@@ -218,7 +226,14 @@ export function AppProvider({ children }) {
         note: order.note,
         payment: order.payment
       })
-    }).catch((err) => console.error('Telegram notify error:', err))
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log('✅ Telegram xabar yuborildi (buyurtma):', data)
+      })
+      .catch((err) => {
+        console.error('❌ Telegram xabar yuborishda xatolik:', err)
+      })
 
     return order
   }, [user, cart, cartTotal, addNotification, openAuth, clearCart])
