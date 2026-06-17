@@ -11,7 +11,7 @@ function ProductCard({ product, delay }) {
   return (
     <article className="product-card scroll-reveal" ref={ref} style={{ transitionDelay: `${delay}ms` }}>
       <div className="product-card__image">
-        <img src={product.image} alt={product.name} loading="lazy" />
+        <img src={product.image} alt={`${product.name} - AZIM Marinade mahsuloti`} loading="lazy" />
       </div>
       <div className="product-card__body">
         <h3>{product.name}</h3>
@@ -42,7 +42,7 @@ export default function Products() {
         <div className="products__header scroll-reveal" ref={headerRef}>
           <div>
             <span className="section-label">MAHSULOTLARIMIZ</span>
-            <h2>Eng Mashhur Mahsulotlar</h2>
+            <h2>Bizning Mahsulotlarimiz</h2>
           </div>
           <button type="button" className="products__link" onClick={openCheckout}>
             Buyurtma berish <HiArrowRight aria-hidden="true" />
