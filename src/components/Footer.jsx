@@ -16,7 +16,7 @@ export default function Footer() {
           <Logo size="sm" />
           <p>
             Yuqori sifatli marinadlangan go&apos;sht mahsulotlari.
-            Farg&apos;ona viloyati bo&apos;ylab ishonchli yetkazib berish.
+            Rishton tumani bo&apos;ylab ishonchli yetkazib berish.
           </p>
         </div>
 
@@ -34,8 +34,8 @@ export default function Footer() {
         <div className="footer__social">
           <h3>Ijtimoiy tarmoqlar</h3>
           <div className="footer__social-icons">
-            <a href="#" aria-label="Instagram"><FaInstagram /></a>
-            <a href="#" aria-label="Telegram"><FaTelegramPlane /></a>
+            <a href="https://www.instagram.com/azim.marinade?igsh=MWd6cXFzMGcwZTRicA%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><FaInstagram /></a>
+            <a href="https://t.me/Akhmadaliyevich_admin" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><FaTelegramPlane /></a>
             <a href="#" aria-label="Facebook"><FaFacebookF /></a>
           </div>
         </div>

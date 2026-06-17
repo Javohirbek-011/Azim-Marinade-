@@ -21,7 +21,7 @@ export default function Stats() {
         <h2 className="stats__title scroll-reveal" ref={ref}>Nega Bizni Tanladilar?</h2>
         <div className="stats__grid">
           <StatItem value="500+" label="Mamnun mijozlar" />
-          <StatItem value="6+" label="Mahsulot turlari" />
+          <StatItem value="19+" label="Mahsulot turlari" />
           <StatItem value="100%" label="Halol va sifatli" />
         </div>
       </div>

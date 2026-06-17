@@ -128,7 +128,7 @@ export default function CartDrawer() {
                     <span>Jami:</span>
                     <strong>{formatPrice(cartTotal)}</strong>
                   </div>
-                  <p className="cart-drawer__delivery">Yetkazib berish: Farg&apos;ona viloyati bo&apos;ylab bepul</p>
+                  <p className="cart-drawer__delivery">Yetkazib berish: Rishton tumani bo&apos;ylab bepul</p>
                   {!user && (
                     <p className="cart-drawer__hint">Buyurtma berish uchun ro&apos;yxatdan o&apos;ting</p>
                   )}
