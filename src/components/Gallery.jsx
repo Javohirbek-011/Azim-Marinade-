@@ -15,7 +15,7 @@ function GalleryItem({ item, delay, onOpen }) {
       onClick={() => onOpen(item)}
       aria-label={`${item.label} rasmini ko'rish`}
     >
-      <img src={item.image} alt={item.label} loading="lazy" />
+      <img src={item.image} alt={`${item.label} - AZIM Marinade mahsuloti`} loading="lazy" />
       <span className="gallery__label">{item.label}</span>
     </button>
   )
@@ -54,7 +54,7 @@ export default function Gallery() {
             <IoClose />
           </button>
           <div className="lightbox__content" onClick={closeLightbox}>
-            <img src={lightbox.image} alt={lightbox.label} />
+            <img src={lightbox.image} alt={`${lightbox.label} - AZIM Marinade mahsuloti`} />
             <span className="lightbox__label">{lightbox.label}</span>
           </div>
         </div>

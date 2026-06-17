@@ -16,7 +16,7 @@ export default function About() {
           </p>
         </div>
         <div className="about__visual">
-          <img src="/images/about-meat.jpg" alt="AZIM marinadlangan go'sht" className="about__image" loading="lazy" />
+          <img src="/images/about-meat.jpg" alt="AZIM Marinade - yuqori sifatli marinadlangan go'sht mahsulotlari" className="about__image" loading="lazy" />
           <div className="about__badge">
             <span className="about__badge-num">100%</span>
             <span className="about__badge-text">Halol mahsulot</span>

@@ -1,4 +1,5 @@
-import { IoCart } from 'react-icons/io5'
+import { useState } from 'react'
+import { IoCart, IoChevronDown } from 'react-icons/io5'
 import { HiArrowRight } from 'react-icons/hi'
 import { products } from '../data/products'
 import { useScrollReveal } from '../hooks/useScrollReveal'
@@ -35,6 +36,11 @@ function ProductCard({ product, delay }) {
 export default function Products() {
   const headerRef = useScrollReveal()
   const { openCheckout } = useApp()
+  const [showAll, setShowAll] = useState(false)
+
+  // Faqat 8ta mahsulot ko'rsatish yoki hammasini
+  const displayedProducts = showAll ? products : products.slice(0, 8)
+  const hasMore = products.length > 8
 
   return (
     <section id="mahsulotlar" className="products section">
@@ -49,10 +55,22 @@ export default function Products() {
           </button>
         </div>
         <div className="products__grid">
-          {products.map((p, i) => (
+          {displayedProducts.map((p, i) => (
             <ProductCard key={p.id} product={p} delay={i * 80} />
           ))}
         </div>
+        {hasMore && (
+          <div className="products__more">
+            <button 
+              type="button" 
+              className="btn btn--outline-dark"
+              onClick={() => setShowAll(!showAll)}
+            >
+              {showAll ? "Kamroq ko'rish" : "Ko'proq ko'rish"}
+              <IoChevronDown style={{ transform: showAll ? 'rotate(180deg)' : 'rotate(0)', transition: 'transform 0.3s' }} />
+            </button>
+          </div>
+        )}
       </div>
     </section>
   )
