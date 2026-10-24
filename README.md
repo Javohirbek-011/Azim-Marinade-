@@ -50,7 +50,8 @@ npm run preview
 1. GitHub repository yarating va push qiling
 2. Netlify hisobingizga kiring
 3. "Import from Git" orqali repository'ni import qiling
-4. Deploy qiling
+4. Site configuration > Environment variables bo'limida `TELEGRAM_BOT_TOKEN` va `TELEGRAM_CHAT_ID` qiymatlarini kiriting
+5. Deploy qiling. Environment variable'larni o'zgartirgandan keyin yangi deploy boshlang
 
 ## Texnologiyalar
 

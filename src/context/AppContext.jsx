@@ -13,6 +13,21 @@ import {
 
 const AppContext = createContext(null)
 
+async function sendTelegramNotification(payload) {
+  const response = await fetch('/.netlify/functions/telegram-notify', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  })
+  const data = await response.json()
+
+  if (!response.ok || !data.success) {
+    throw new Error(data.detail?.description || data.error || `Telegram function returned ${response.status}`)
+  }
+
+  return data
+}
+
 export function AppProvider({ children }) {
   const [user, setUser] = useState(null)
   const [cart, setCart] = useState([])
@@ -75,24 +90,19 @@ export function AppProvider({ children }) {
     addNotification(`Xush kelibsiz, ${newUser.name}! Ro'yxatdan muvaffaqiyatli o'tdingiz.`, 'success')
 
     // Telegramga xabar yuborish
-    fetch('/.netlify/functions/telegram-notify', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        type: 'register',
-        name: newUser.name,
-        email: newUser.email,
-        phone: newUser.phone,
-        address: newUser.address
-      })
+    sendTelegramNotification({
+      type: 'register',
+      name: newUser.name,
+      email: newUser.email,
+      phone: newUser.phone,
+      address: newUser.address
     })
-      .then(res => res.json())
       .then(data => {
         console.log('✅ Telegram xabar yuborildi (register):', data)
       })
       .catch((err) => {
         console.error('❌ Telegram xabar yuborishda xatolik:', err)
-        addNotification('Telegram xabar yuborishda xatolik', 'error')
+        addNotification(`Telegram xabar yuborilmadi: ${err.message}`, 'error')
       })
 
     return true
@@ -212,27 +222,23 @@ export function AppProvider({ children }) {
     )
 
     // Telegramga buyurtma xabarini yuborish
-    fetch('/.netlify/functions/telegram-notify', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        type: 'order',
-        orderId: order.id,
-        userName: order.userName,
-        userPhone: order.userPhone,
-        items: order.items,
-        total: order.total,
-        address: order.address,
-        note: order.note,
-        payment: order.payment
-      })
+    sendTelegramNotification({
+      type: 'order',
+      orderId: order.id,
+      userName: order.userName,
+      userPhone: order.userPhone,
+      items: order.items,
+      total: order.total,
+      address: order.address,
+      note: order.note,
+      payment: order.payment
     })
-      .then(res => res.json())
       .then(data => {
         console.log('✅ Telegram xabar yuborildi (buyurtma):', data)
       })
       .catch((err) => {
         console.error('❌ Telegram xabar yuborishda xatolik:', err)
+        addNotification(`Telegram xabar yuborilmadi: ${err.message}`, 'error')
       })
 
     return order
