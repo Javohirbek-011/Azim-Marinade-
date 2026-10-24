@@ -24,7 +24,7 @@ exports.handler = async (event) => {
     const { type, ...fields } = data;
 
     const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
-    const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
+    const CHAT_ID = '8282676952';
 
     console.log('🔍 Environment check:', {
       hasBotToken: !!BOT_TOKEN,
