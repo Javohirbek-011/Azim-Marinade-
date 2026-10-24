@@ -28,10 +28,12 @@ npm install
 ### Development rejimida
 
 ```bash
+npx netlify-cli login
+npx netlify-cli link
 npm run dev
 ```
 
-Frontend: `http://localhost:5173`
+`netlify link` vaqtida `azim-marinade` saytini tanlang. Lokal sayt `http://localhost:8888` manzilida ochiladi va Netlify Functions production muhitidagi sozlamalar bilan ishlaydi. Shu sababli lokal ro'yxatdan o'tish yoki buyurtma ham haqiqiy Telegram xabari yuboradi.
 
 ### Production
 

@@ -1,4 +1,6 @@
-exports.handler = async (event) => {
+import process from 'node:process';
+
+export const handler = async (event) => {
   // CORS headers qo'shamiz
   const headers = {
     'Access-Control-Allow-Origin': '*',
